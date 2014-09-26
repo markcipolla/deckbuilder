@@ -53,6 +53,8 @@ gem 'validates_formatting_of'
 
 gem 'rails_12factor', group: :production
 
+gem 'carrierwave'
+
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
