@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  faction_id: 
+  deck_id: 
+  name: MyString
+  description: MyText
+  cost: 1
+  identity_id: 
+  data_pack_id: 
+
+two:
+  faction_id: 
+  deck_id: 
+  name: MyString
+  description: MyText
+  cost: 1
+  identity_id: 
+  data_pack_id: 
