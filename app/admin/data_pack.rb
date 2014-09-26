@@ -1,6 +1,9 @@
 ActiveAdmin.register DataPack do
   permit_params :name, :box, :release_date
 
+  controller do
+    defaults finder: :find_by_slug
+  end
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
