@@ -1,4 +1,5 @@
 ActiveAdmin.register CardType do
+  permit_params :name
 
 
   # See permitted parameters documentation:
