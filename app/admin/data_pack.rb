@@ -1,4 +1,5 @@
 ActiveAdmin.register DataPack do
+  permit_params :release_date
 
 
   # See permitted parameters documentation:
