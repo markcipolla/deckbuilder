@@ -98,6 +98,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     formtastic (3.0.0)
       actionpack (>= 3.2.13)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -332,6 +334,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise!
+  friendly_id (~> 5.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   omniauth
