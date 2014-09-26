@@ -1,4 +1,5 @@
 ActiveAdmin.register Card do
+  permit_params :name, :description, :cost
 
 
   # See permitted parameters documentation:
