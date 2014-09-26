@@ -1,4 +1,5 @@
 ActiveAdmin.register Identity do
+  permit_params 
 
 
   # See permitted parameters documentation:
