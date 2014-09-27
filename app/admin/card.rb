@@ -6,6 +6,10 @@ ActiveAdmin.register Card do
   end
 
   index do
+    column "id" do |card|
+      link_to card.id, admin_card_path(card)
+    end
+
     column "Name" do |card|
       link_to card.name, admin_card_path(card)
     end
