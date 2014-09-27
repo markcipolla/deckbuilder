@@ -36,7 +36,7 @@ class CardIngestion
 
 
     if /-(\d{5})/.match(results["image_id"])
-      @image_id = /-(\d{5})/.match(results["image_id"])[1]
+      @image_id = /-(\d{5}).png/.match(results["image_id"])[1]
     end
 
     check_types_existence_and_create_if_need_be
