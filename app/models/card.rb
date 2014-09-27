@@ -10,6 +10,6 @@ class Card < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   def card_image
-    "cards/#{image_id}.png"
+    image_id.present? ? "cards/#{image_id}.png" : "cards/blank.png"
   end
 end
