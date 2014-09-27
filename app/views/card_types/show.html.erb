@@ -1,0 +1,9 @@
+<h1><%= @type.name %></h1>
+
+<div class="row">
+  <% @type.cards.each do |card| %>
+    <div class="card col-xs-4 col-md-3">
+      <%= link_to image_tag(card.card_image), card_path(card) %>
+    </div>
+  <% end %>
+</div>
