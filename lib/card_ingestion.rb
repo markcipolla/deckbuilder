@@ -33,7 +33,11 @@ class CardIngestion
     @pack = results["pack"]
     @description = results["description"]
     @features = results["features"].collect{ |f| f.split(": ") }
-    @image_id = /-(\d{5})/.match(results["image_id"]).try(:first)
+
+
+    if /-(\d{5})/.match(results["image_id"])
+      @image_id = /-(\d{5})/.match(results["image_id"])[1]
+    end
 
     check_types_existence_and_create_if_need_be
     check_packs_existence_and_create_if_need_be
