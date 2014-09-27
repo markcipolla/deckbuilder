@@ -5,6 +5,49 @@ ActiveAdmin.register Card do
     defaults finder: :find_by_slug
   end
 
+  index do
+    column "Name" do |card|
+      link_to card.name, admin_card_path(card)
+    end
+
+    column :description
+
+    column "Image" do |card|
+      image_tag card.card_image, style: "width: 60px"
+    end
+  end
+
+  form do |f|
+    f.inputs "Details" do
+      f.input :name
+      f.input :slug
+      f.input :description
+      f.input :image_id
+    end
+
+    f.inputs "Features" do
+      f.input :advancement_cost
+      f.input :agenda_point
+      f.input :cost
+      f.input :deck_minimum_cards
+      f.input :influence
+      f.input :link
+      f.input :max_influence
+      f.input :memory_units
+      f.input :strength
+      f.input :trash_cost
+    end
+
+    f.inputs "Associations" do
+      f.input :data_pack_id
+      f.input :deck_id
+      f.input :faction_id
+      f.input :identity_id
+    end
+
+    f.actions
+  end
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
