@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926045912) do
+ActiveRecord::Schema.define(version: 20140927030946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20140926045912) do
     t.datetime "updated_at"
   end
 
+  create_table "card_types_cards", force: true do |t|
+    t.integer "card_type_id"
+    t.integer "card_id"
+  end
+
+  add_index "card_types_cards", ["card_id"], name: "index_card_types_cards_on_card_id", using: :btree
+  add_index "card_types_cards", ["card_type_id"], name: "index_card_types_cards_on_card_type_id", using: :btree
+
   create_table "cards", force: true do |t|
     t.integer  "faction_id"
     t.integer  "deck_id"
@@ -65,20 +73,24 @@ ActiveRecord::Schema.define(version: 20140926045912) do
     t.integer  "data_pack_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "max_influence"
+    t.integer  "deck_minimum_cards"
+    t.integer  "influence"
+    t.integer  "strength"
+    t.integer  "memory_units"
+    t.integer  "advancement_cost"
+    t.integer  "agenda_point"
+    t.integer  "trash_cost"
+    t.integer  "link"
+    t.string   "image_id"
+    t.string   "slug"
   end
 
   add_index "cards", ["data_pack_id"], name: "index_cards_on_data_pack_id", using: :btree
   add_index "cards", ["deck_id"], name: "index_cards_on_deck_id", using: :btree
   add_index "cards", ["faction_id"], name: "index_cards_on_faction_id", using: :btree
   add_index "cards", ["identity_id"], name: "index_cards_on_identity_id", using: :btree
-
-  create_table "cards_card_types", force: true do |t|
-    t.integer "card_id"
-    t.integer "card_type_id"
-  end
-
-  add_index "cards_card_types", ["card_id"], name: "index_cards_card_types_on_card_id", using: :btree
-  add_index "cards_card_types", ["card_type_id"], name: "index_cards_card_types_on_card_type_id", using: :btree
+  add_index "cards", ["slug"], name: "index_cards_on_slug", unique: true, using: :btree
 
   create_table "cards_decks", force: true do |t|
     t.integer "card_id"

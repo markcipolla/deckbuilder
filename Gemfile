@@ -54,6 +54,7 @@ gem 'validates_formatting_of'
 gem 'rails_12factor', group: :production
 gem 'friendly_id', '~> 5.0.0'
 gem 'carrierwave'
+gem 'wombat'
 
 group :development do
   gem 'pry-rails'
