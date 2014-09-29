@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :data_packs, only: [:index, :show], path: '/data-packs'
   resources :card_types, only: [:show], path: '/card-types'
   resources :cards, only: [:index, :show]
+  resources :decks
 
   # You can have the root of your site routed with "root"
   root 'pages#index'

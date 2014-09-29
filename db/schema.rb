@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927033538) do
+ActiveRecord::Schema.define(version: 20140929063622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,7 +130,10 @@ ActiveRecord::Schema.define(version: 20140927033538) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "factions", ["slug"], name: "index_factions_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -146,14 +149,15 @@ ActiveRecord::Schema.define(version: 20140927033538) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "identities", force: true do |t|
-    t.integer  "deck_id"
     t.integer  "faction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "slug"
   end
 
-  add_index "identities", ["deck_id"], name: "index_identities_on_deck_id", using: :btree
   add_index "identities", ["faction_id"], name: "index_identities_on_faction_id", using: :btree
+  add_index "identities", ["slug"], name: "index_identities_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
