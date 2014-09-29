@@ -12,4 +12,10 @@ class Card < ActiveRecord::Base
   def card_image
     image_id.present? ? "cards/#{image_id}.png" : "cards/blank.png"
   end
+
+  def formatted_description
+    text = description.gsub("[Click]", "<span class='click'>[Click]</span>")
+    text = text.("[Subroutine]", "<span class='subroutine'>[Subroutine]</span>")
+    text = text.("[Credits]", "<span class='credits'>[Credits]</span>")
+  end
 end

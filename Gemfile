@@ -56,6 +56,10 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'carrierwave'
 gem 'wombat'
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
