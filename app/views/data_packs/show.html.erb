@@ -1,6 +1,6 @@
 <div class="pack row">
   <div class="col-xs-3">
-    <%= image_tag @data_pack.box %>
+    <%= image_tag @data_pack.box_image %>
   </div>
 
   <div class="col-xs-9 ">
@@ -8,4 +8,10 @@
   </div>
 </div>
 
-<h3>Cards will go here</h3>
+<div class="row">
+  <% @data_pack.cards.each do |card| %>
+    <div class="card col-xs-4 col-md-3">
+      <%= link_to image_tag(card.card_image), card_path(card) %>
+    </div>
+  <% end %>
+</div>

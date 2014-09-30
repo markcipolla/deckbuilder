@@ -1,16 +1,13 @@
 class Deck < ActiveRecord::Base
   belongs_to :faction
   belongs_to :user
-  has_and_belongs_to_many :cards
-  has_one :identity
 
-  validate :has_one_identity?
+  has_many :cards, through: :deck_cards
+  has_many :deck_cards, dependent: :destroy
+  accepts_nested_attributes_for :deck_cards, reject_if: :all_blank, allow_destroy: true
 
-  private
+  has_one :identity_card
 
-  def has_one_identity?
-    unless cards.select{ |c| c.card_types.include?(CardType.where(name: "Identity")) }.count == 1
-      errors.add(:cards, 'must have an Identity')
-    end
-  end
+  validates :identity_card_id, presence: true
+
 end

@@ -1,9 +1,10 @@
 <div class="row">
-  <%= link_to "Create a new deck", new_deck_path, class: "btn btn-primary" %>
+  <%= link_to "Create a new Runner deck", decks_new_runner_path, class: "btn btn-primary" %>
+  <%= link_to "Create a new Corporation deck", decks_new_corporation_path, class: "btn btn-primary" %>
 </div>
 
-<div class="row">
 
+<div class="row">
   <% @decks.each do |deck| %>
     <div class="card col-xs-4 col-md-3">
       <%= link_to deck.name, deck_path(deck) %>

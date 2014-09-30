@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929063622) do
+ActiveRecord::Schema.define(version: 20140930014657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,16 @@ ActiveRecord::Schema.define(version: 20140929063622) do
 
   add_index "data_packs", ["slug"], name: "index_data_packs_on_slug", unique: true, using: :btree
 
+  create_table "deck_cards", force: true do |t|
+    t.integer "deck_id"
+    t.integer "card_id"
+    t.integer "number"
+  end
+
+  add_index "deck_cards", ["card_id"], name: "index_deck_cards_on_card_id", using: :btree
+  add_index "deck_cards", ["deck_id", "card_id"], name: "index_deck_cards_on_deck_id_and_card_id", unique: true, using: :btree
+  add_index "deck_cards", ["deck_id"], name: "index_deck_cards_on_deck_id", using: :btree
+
   create_table "decks", force: true do |t|
     t.integer  "faction_id"
     t.integer  "user_id"
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140929063622) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "identity_card_id"
   end
 
   add_index "decks", ["faction_id"], name: "index_decks_on_faction_id", using: :btree
