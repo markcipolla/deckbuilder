@@ -2,7 +2,8 @@ class Card < ActiveRecord::Base
   belongs_to :faction
   belongs_to :identity
   belongs_to :data_pack
-  # has_and_belongs_to_many :decks
+  has_many :decks, through: :deck_cards
+  has_many :deck_cards
   has_and_belongs_to_many :card_types
 
   extend FriendlyId

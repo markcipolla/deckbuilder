@@ -1,0 +1,28 @@
+<%= simple_form_for @deck do |f| %>
+  <div class="row">
+    <%= f.input :name %>
+    <%= f.input :faction_id, as: :hidden, input_html: { value: @faction.id } %>
+
+    <div class="identity col-md-5"%>
+      <%= f.input :identity_card_id, as: :radio_buttons, collection: @identities %>
+    </div>
+
+    <div class="card-selection col-md-7"%>
+      <% count = 0 %>
+      <% @cards.each do |card_type, cards| %>
+        <h3><%= card_type.to_s.titleize %> cards</h3>
+
+        <ul>
+          <% cards.each do |card| %>
+            <%= render partial: "deck_card", locals: {card: card, count: count} %>
+            <% count += 1 %>
+          <% end %>
+        </ul>
+
+      <% end %>
+    </div>
+
+
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

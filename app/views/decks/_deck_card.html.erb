@@ -1,0 +1,5 @@
+<li data-influence="<%= card.influence %>" data-types="<%= card.card_types.collect(&:slug).join(',') %>">
+  <p><%= card.name %></p>
+  <%= hidden_field_tag "deck[deck_cards_attributes][#{count}][card_id]", card.id  %>
+  <%= number_field_tag "deck[deck_cards_attributes][#{count}][number]", @deck.deck_cards.where(card_id: card.id).try(&:first).try(&:number) %>
+</li>

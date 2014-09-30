@@ -4,4 +4,8 @@ class DataPack < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  def box_image
+    "data_packs/#{slug}.png"
+  end
 end

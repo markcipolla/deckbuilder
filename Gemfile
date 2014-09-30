@@ -55,6 +55,7 @@ gem 'rails_12factor', group: :production
 gem 'friendly_id', '~> 5.0.0'
 gem 'carrierwave'
 gem 'wombat'
+gem 'cocoon'
 
 group :production do
   gem 'newrelic_rpm'
