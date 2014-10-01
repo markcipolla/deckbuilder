@@ -1,9 +1,11 @@
-<h1><%= @type.name %></h1>
+<%= cache ['card_types#show', @type, 'v1'], :expires_in => 1.hour do %>
+  <h1><%= @type.name %></h1>
 
-<div class="row">
-  <% @type.cards.each do |card| %>
-    <div class="card col-xs-4 col-md-3">
-      <%= link_to image_tag(card.card_image), card_path(card) %>
-    </div>
-  <% end %>
-</div>
+  <div class="row">
+    <% @type.cards.each do |card| %>
+      <div class="card col-xs-4 col-md-3">
+        <%= link_to image_tag(card.card_image), card_path(card) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

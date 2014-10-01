@@ -1,4 +1,4 @@
-<% cache("all_data_packs", :expires_in => 1.hour) do %>
+<%= cache ['decks#index', 'v1'], :expires_in => 1.hour do %>
   <% @data_packs.each do |data_pack| %>
     <div class="pack row">
       <div class="col-xs-2">
