@@ -61,11 +61,11 @@ group :production do
 
   # Memcached using Memcachier on Heroku
   gem 'memcachier'
+  gem 'rack-cache'
   gem 'dalli'
 end
 
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
-  gem 'rack-cache'
 end
