@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bundler'
-
+gem 'backbone-rails'
 gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'simple_form'
