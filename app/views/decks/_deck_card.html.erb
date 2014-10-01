@@ -1,5 +1,12 @@
-<li data-influence="<%= card.influence %>" data-types="<%= card.card_types.collect(&:slug).join(',') %>">
-  <p><%= card.name %></p>
-  <%= hidden_field_tag "deck[deck_cards_attributes][#{count}][card_id]", card.id  %>
-  <%= number_field_tag "deck[deck_cards_attributes][#{count}][number]", @deck.deck_cards.where(card_id: card.id).try(&:first).try(&:number) %>
-</li>
+<tr>
+  <td>
+    <%= number_field_tag "deck[deck_cards_attributes][#{count}][number]", @deck.deck_cards.where(card_id: card.id).try(&:first).try(&:number) %>
+    <%= hidden_field_tag "deck[deck_cards_attributes][#{count}][card_id]", card.id  %>
+  </td>
+  <td><%= card.name %></td>
+  <td class="identity">
+    <i data-toggle="tooltip" title="<%= card.identity.name %>" class="icon icon-<%= card.identity.slug %>"></i>
+  </td>
+  <td><%= card.card_types.collect(&:slug).to_sentence %></td>
+  <td class="influence"><%= card.influence %></td>
+</tr>

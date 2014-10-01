@@ -6,6 +6,7 @@
 #= require bootstrap
 #= require cocoon
 #= require underscore
+#= require bootstrap-sprockets
 
 
 # Page base class

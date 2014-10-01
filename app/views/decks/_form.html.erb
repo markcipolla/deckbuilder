@@ -11,15 +11,26 @@
     <div class="card-selection col-md-7"%>
       <% count = 0 %>
       <% @cards.each do |card_type, cards| %>
-        <h3><%= card_type.to_s.titleize %> cards</h3>
+        <div class="panel panel-default">
 
-        <ul>
-          <% cards.each do |card| %>
-            <%= render partial: "deck_card", locals: {card: card, count: count} %>
-            <% count += 1 %>
-          <% end %>
-        </ul>
+          <div class="panel-heading"><%= card_type.to_s.titleize %> cards</div>
+          <table class="table">
+            <tr>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Identity</th>
+              <th>Types</th>
+              <th>Influence</th>
+            </tr>
 
+            <tbody>
+              <% cards.each do |card| %>
+                <%= render partial: "deck_card", locals: {card: card, count: count} %>
+                <% count += 1 %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       <% end %>
     </div>
 

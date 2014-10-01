@@ -3,4 +3,5 @@
 
 class Deck.DeckPage extends Deck.BasePage
   initialize: (options) ->
+    $(".identity i").tooltip()
     super(options)
