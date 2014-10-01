@@ -7,6 +7,10 @@
   <td class="identity">
     <i data-toggle="tooltip" title="<%= card.identity.name %>" class="icon icon-<%= card.identity.slug %>"></i>
   </td>
-  <td><%= card.card_types.collect(&:slug).to_sentence %></td>
+  <td class="card-types">
+    <% card.card_types.not_identity.each do |type| %>
+      <i data-toggle="tooltip" title="<%= type.name %>" class="icon icon-<%= type.slug %>"></i>
+    <% end %>
+  </td>
   <td class="influence"><%= card.influence %></td>
 </tr>

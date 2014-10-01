@@ -3,4 +3,13 @@ class CardType < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  def self.identity
+    where(name: ["Anarch", "Criminal", "Shaper", "Haas-Bioroid", "Jinteki", "Weyland Consortium", "NBN"])
+  end
+
+  def self.not_identity
+    where.not(name: ["Anarch", "Criminal", "Shaper", "Haas-Bioroid", "Jinteki", "Weyland Consortium", "NBN"])
+  end
 end
+

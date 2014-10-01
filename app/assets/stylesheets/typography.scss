@@ -10,7 +10,6 @@
 }
 
 .icon {
-  font-family: 'Netrunner';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -21,6 +20,35 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shaper-smooth,
+.icon-shaper,
+.icon-Honor-and-Profit,
+.icon-Spin-Cycle,
+.icon-Genesis-Cycle,
+.icon-Creation-and-Control,
+.icon-Core-Set,
+.icon-credit,
+.icon-recurring-credit,
+.icon-click,
+.icon-link,
+.icon-trash,
+.icon-mu,
+.icon-1mu,
+.icon-subroutine,
+.icon-3mu,
+.icon-2mu,
+.icon-anarch,
+.icon-criminal,
+.icon-haas-bioroid,
+.icon-weyland-consortium,
+.icon-jinteki-simple,
+.icon-jinteki,
+.icon-nbn,
+.icon-agenda,
+.icon-rez {
+  font-family: 'Netrunner';
 }
 
 .icon-shaper-smooth:before {
@@ -113,50 +141,50 @@
   font-style: normal;
 }
 
-[class^="nrdb-"], [class*=" nrdb-"] {
+.icon-ice,
+.icon-hardware,
+.icon-action,
+.icon-hardware,
+.icon-asset,
+.icon-asset,
+.icon-upgrade,
+.icon-resource,
+.icon-program,
+.icon-identity,
+.icon-agenda {
   font-family: 'NRDB';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-.nrdb-ice:before {
+.icon-ice:before {
   content: "\e001";
 }
-.nrdb-hardware:before {
+.icon-hardware:before {
   content: "\e002";
 }
-.nrdb-action:before {
+.icon-action:before {
   content: "\e003";
 }
-.nrdb-hardware-alt:before {
+.icon-hardware-alt:before {
   content: "\e006";
 }
-.nrdb-asset-alt:before {
+.icon-asset-alt:before {
   content: "\e007";
 }
-.nrdb-asset:before {
+.icon-asset:before {
   content: "\e008";
 }
-.nrdb-upgrade:before {
+.icon-upgrade:before {
   content: "\e004";
 }
-.nrdb-resource:before {
+.icon-resource:before {
   content: "\e000";
 }
-.nrdb-program:before {
+.icon-program:before {
   content: "\e600";
 }
-.nrdb-identity:before {
+.icon-identity:before {
   content: "\e601";
 }
-.nrdb-agenda:before {
+.icon-agenda:before {
   content: "\e602";
 }
