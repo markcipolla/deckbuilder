@@ -5,13 +5,55 @@
     <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
     <div class="identity col-md-5"%>
-      <%= f.input :identity_card_id, as: :select, collection: @identities %>
+      <div class="panel panel-default">
+        <div class="panel-heading">Cards</div>
+        <div class="panel-body">
+          <%= f.input :identity_card_id, as: :select, collection: @identities %>
+        </div>
+
+        <!-- List group -->
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+
+
+
+      <div class="card-list panel panel-default">
+        <div class="panel-heading">Cards</div>
+        <table class="table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Card</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      </div>
     </div>
 
     <div class="card-selection col-md-7"%>
       <% count = 0 %>
-      <% @cards.each do |card_type, cards| %>
         <div class="panel panel-default">
+          <table class="table">
+            <tr>
+              <th>Number</th>
+              <th>Name</th>
+              <th>Identity</th>
+              <th>Types</th>
+              <th>Influence</th>
+            </tr>
+          </table>
+        </div>
+      <% @cards.each do |card_type, cards| %>
+        <div class="<%= card_type.to_s%> panel panel-default">
 
           <div class="panel-heading"><%= card_type.to_s.titleize %> cards</div>
           <table class="table">

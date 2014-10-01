@@ -15,4 +15,4 @@ class Deck.BasePage extends Backbone.View
   el: document.body
 
   initialize: (options) ->
-    super(options)
+
