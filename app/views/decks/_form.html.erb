@@ -2,9 +2,10 @@
   <div class="row">
     <%= f.input :name %>
     <%= f.input :faction_id, as: :hidden, input_html: { value: @faction.id } %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
     <div class="identity col-md-5"%>
-      <%= f.input :identity_card_id, as: :radio_buttons, collection: @identities %>
+      <%= f.input :identity_card_id, as: :select, collection: @identities %>
     </div>
 
     <div class="card-selection col-md-7"%>

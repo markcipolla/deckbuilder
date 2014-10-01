@@ -3,11 +3,25 @@
   <%= link_to "Create a new Corporation deck", decks_new_corporation_path, class: "btn btn-primary" %>
 </div>
 
-
-<div class="row">
-  <% @decks.each do |deck| %>
-    <div class="card col-xs-4 col-md-3">
-      <%= link_to deck.name, deck_path(deck) %>
-    </div>
-  <% end %>
-</div>
+<% if @decks.any? %>
+  <div class="row">
+    <table class="decks table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Identity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @decks.each do |deck| %>
+          <tr>
+            <td class="image"><%= image_tag Card.find(deck.identity_card_id).card_image %></td>
+            <td><%= link_to deck.name, deck_path(deck) %></td>
+            <td><%= Card.find(deck.identity_card_id).name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

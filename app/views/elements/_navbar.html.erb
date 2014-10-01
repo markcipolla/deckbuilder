@@ -15,6 +15,10 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Cards", cards_path %></li>
+        <li><%= link_to "Data Packs", data_packs_path %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "Decks", decks_path %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if defined?(Devise) %>

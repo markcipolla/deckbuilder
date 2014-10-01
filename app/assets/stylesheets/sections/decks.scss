@@ -1,9 +1,9 @@
 .decks {
 
-  &.new {
-    .card {
-      .controls {
-
+  .decks {
+    .image {
+      img {
+        max-width: 40px;
       }
     }
   }

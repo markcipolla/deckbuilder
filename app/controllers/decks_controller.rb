@@ -47,7 +47,7 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :identity_card_id, :deck, :id, :faction_id, deck_cards_attributes: [:card_id, :deck_id, :number, :_destroy])
+    params.require(:deck).permit(:name, :identity_card_id, :deck, :id, :user, :user_id, :faction_id, deck_cards_attributes: [:card_id, :deck_id, :number, :_destroy])
   end
 
   def sort_and_group_cards(faction_cards)
