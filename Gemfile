@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -59,6 +60,10 @@ gem 'cocoon'
 
 group :production do
   gem 'newrelic_rpm'
+
+  # Memcached using Memcachier on Heroku
+  gem 'memcachier'
+  gem 'dalli'
 end
 
 group :development do
