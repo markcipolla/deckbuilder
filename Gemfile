@@ -69,4 +69,5 @@ end
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
+  gem 'rack-cache'
 end
