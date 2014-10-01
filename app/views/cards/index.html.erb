@@ -1,7 +1,9 @@
-<div class="row">
-  <% @cards.each do |card| %>
-    <div class="card col-xs-4 col-md-3">
-      <%= link_to image_tag(card.card_image), card_path(card) %>
-    </div>
-  <% end %>
-</div>
+<% cache("all_cards", :expires_in => 1.hour) do %>
+  <div class="row">
+    <% @cards.each do |card| %>
+      <div class="card col-xs-4 col-md-3">
+        <%= link_to image_tag(card.card_image), card_path(card) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
