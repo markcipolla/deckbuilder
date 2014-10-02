@@ -35,18 +35,29 @@ class Deck.DeckPage extends Deck.BasePage
     @_buildNumberCounters()
     @_buildCardList()
     @_setCardImage()
+    @_showIdentityAgendas()
     super(options)
 
   _updateIdentityCard: (event) ->
     @_buildCardList()
     @_setCardImage()
 
+  _showIdentityAgendas: ->
+    _.map @cards, (card) =>
+      # debugger
+      if $(card).hasClass("agenda")
+        # debugger
+        unless $(card).data("identitySlug") == $(".selected-identity select option:selected").data("identity_slug") || $(card).data("identitySlug") == "neutral"
+          $(card).hide()
+
   _setCardImage: ->
-    card = $(".selected-identity select option:selected")
-    $(".card-image img").attr("src", card.data("imageurl"))
-    @identity = card.data("identity-slug")
-    @maximumInfluence = card.data("max_influence")
+    identityCard = $(".selected-identity select option:selected")
+    $(".card-image img").attr("src", identityCard.data("imageurl"))
+    @identity = identityCard.data("identity-slug")
+    @maximumInfluence = identityCard.data("max_influence")
     $(".maximum-influence span.maximum").html(@maximumInfluence)
+    @cards.show()
+    @_showIdentityAgendas()
 
   _toggleCardType: (event) ->
     $(event.currentTarget).toggleClass("active")
