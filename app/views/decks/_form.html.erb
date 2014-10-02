@@ -7,9 +7,7 @@
       <div class="panel panel-default">
         <div class="panel-heading"><%= f.input :name %></div>
         <div class="panel-body selected-identity">
-          <%= f.input :identity_card_id do %>
-            <%= f.select :identity_card_id, @identities.map{ |l| [l.name, l.id, {"data-imageurl" => image_url(l.card_image), "data-deck_minimum_cards" => l.deck_minimum_cards, "data-max_influence" => l.max_influence, "data-identity_slug" => l.identity.slug}] } %>
-          <% end %>
+          <%= f.select :identity_card_id, @identities.map{ |l| [l.name, l.id, {"data-imageurl" => image_url(l.card_image), "data-deck_minimum_cards" => l.deck_minimum_cards, "data-max_influence" => l.max_influence, "data-identity_slug" => l.identity.slug}] } %>
         </div>
 
         <!-- List group -->
