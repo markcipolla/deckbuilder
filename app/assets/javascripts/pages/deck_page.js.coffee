@@ -6,6 +6,7 @@ class Deck.DeckPage extends Deck.BasePage
     "submit form": "_submitForm"
     "click .card-selection .deck-card .number a": "_changeDeckCardCount"
     "click .card-toggles button": "_toggleCardType"
+    "change .selected-identity select": "_updateIdentityCard"
 
   numberButtons: _.template """
     <a href="#" class="count">0</a>
@@ -33,7 +34,19 @@ class Deck.DeckPage extends Deck.BasePage
 
     @_buildNumberCounters()
     @_buildCardList()
+    @_setCardImage()
     super(options)
+
+  _updateIdentityCard: (event) ->
+    @_buildCardList()
+    @_setCardImage()
+
+  _setCardImage: ->
+    card = $(".selected-identity select option:selected")
+    $(".card-image img").attr("src", card.data("imageurl"))
+    @identity = card.data("identity-slug")
+    @maximumInfluence = card.data("max_influence")
+    $(".maximum-influence span.maximum").html(@maximumInfluence)
 
   _toggleCardType: (event) ->
     $(event.currentTarget).toggleClass("active")
@@ -48,20 +61,32 @@ class Deck.DeckPage extends Deck.BasePage
 
     $(".number-of-cards .badge").empty()
     totalCount = 0
+    totalInfluence = 0
     _.map @cards, (card) =>
 
       name = $(card).children(".name").children(".card-description").html()
       content = $(card).children(".name").children(".card-description").data("content")
       cardCount = $(card).children(".number").children(".active").attr("class").split(" ")[0].replace("count", "")
+      cardIdentity = $(card).data("identitySlug")
+      cardInfluence = parseInt($(card).children(".influence").html()) || 0
 
       if cardCount > 0
+        if cardIdentity != $(".selected-identity select option:selected").data("identity_slug")
+          totalInfluence += (cardCount * cardInfluence)
+
         totalCount += parseInt(cardCount)
         cardListTable.append(@cardList(
           number: cardCount,
           name: name,
           content: content
         ))
-    $(".number-of-cards .badge").html(totalCount)
+
+    if totalInfluence > @maximumInfluence
+      $(".maximum-influence span.remaining").removeClass("label-default").addClass("label-danger")
+    else
+      $(".maximum-influence span.remaining").removeClass("label-danger").addClass("label-default")
+    $(".maximum-influence span.remaining").html(totalInfluence)
+    $(".number-of-cards span").html(totalCount)
 
   _buildNumberCounters: ->
     _.map @cards, (card) =>

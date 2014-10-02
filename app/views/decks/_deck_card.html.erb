@@ -1,4 +1,4 @@
-<tr class="deck-card <%= card.card_types.collect(&:slug).join(' ') %>">
+<tr data-identity-slug="<%= card.identity.slug %>" class="deck-card <%= card.card_types.collect(&:slug).join(' ') %>">
   <td class="number">
     <%= hidden_field_tag "deck[deck_cards_attributes][#{count}][number]", @deck.deck_cards.where(card_id: card.id).try(&:first).try(&:number) %>
     <%= hidden_field_tag "deck[deck_cards_attributes][#{count}][card_id]", card.id  %>
