@@ -47,7 +47,8 @@
 .icon-jinteki,
 .icon-nbn,
 .icon-agenda,
-.icon-rez {
+.icon-rez,
+.icon-neutral {
   font-family: 'Netrunner';
 }
 
@@ -127,6 +128,10 @@
   content: "\e60d";
 }
 .icon-rez:before {
+  content: "\e60f";
+}
+
+.icon-neutral:before {
   content: "\e60f";
 }
 

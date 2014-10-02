@@ -5,11 +5,11 @@ class CardType < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   def self.identity
-    where(name: ["Anarch", "Criminal", "Shaper", "Haas-Bioroid", "Jinteki", "Weyland Consortium", "NBN"])
+    where(name: ["Neutral", "Anarch", "Criminal", "Shaper", "Haas-Bioroid", "Jinteki", "Weyland Consortium", "NBN"])
   end
 
   def self.not_identity
-    where.not(name: ["Anarch", "Criminal", "Shaper", "Haas-Bioroid", "Jinteki", "Weyland Consortium", "NBN"])
+    where.not(name: ["Neutral", "Anarch", "Criminal", "Shaper", "Haas-Bioroid", "Jinteki", "Weyland Consortium", "NBN"])
   end
 end
 

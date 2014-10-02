@@ -36,17 +36,29 @@
 
     <div class="card-selection col-md-7"%>
       <% count = 0 %>
-      <div class="panel panel-default">
-        <table class="table">
-          <tr>
-            <th>Number</th>
-            <th>Name</th>
-            <th>Identity</th>
-            <th>Types</th>
-            <th>Influence</th>
-          </tr>
-        </table>
+
+      <div class="btn-toolbar card-toggles" role="toolbar">
+        <div class="btn-group">
+          <button type="button" class="neutral btn btn-default" title="neutral">
+            <i class="icon icon-neutral"></i>
+          </button>
+
+          <% @identities.collect(&:identity).uniq.each do |card_type| %>
+            <button type="button" class="<%= card_type.slug %> btn btn-default" title="<%= card_type.name %>">
+              <i class="icon icon-<%= card_type.slug %>"></i>
+            </button>
+          <% end %>
+        </div>
+
+        <div class="btn-group">
+          <% @cards.each do |card_type, cards| %>
+            <button type="button" class="<%= card_type %> btn btn-default" title="<%= card_type.to_s.titleize %>">
+              <i class="icon icon-<%= card_type %>"></i>
+            </button>
+          <% end %>
+        </div>
       </div>
+
       <% @cards.each do |card_type, cards| %>
         <div class="<%= card_type.to_s%> panel panel-default">
 

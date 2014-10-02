@@ -5,6 +5,7 @@ class Deck.DeckPage extends Deck.BasePage
   events:
     "submit form": "_submitForm"
     "click .card-selection .deck-card .number a": "_changeDeckCardCount"
+    "click .card-toggles button": "_toggleCardType"
 
   numberButtons: _.template """
     <a href="#" class="count">0</a>
@@ -33,6 +34,13 @@ class Deck.DeckPage extends Deck.BasePage
     @_buildNumberCounters()
     @_buildCardList()
     super(options)
+
+  _toggleCardType: (event) ->
+    $(event.currentTarget).toggleClass("active")
+    cardType = $(event.currentTarget).attr("class").split(" ")[0]
+    _.map @cards, (card) =>
+      if $(card).hasClass(cardType)
+        $(card).toggle()
 
   _buildCardList: ->
     cardListTable = $(".card-list tbody")
