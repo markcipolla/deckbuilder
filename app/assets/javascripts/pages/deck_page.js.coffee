@@ -33,9 +33,10 @@ class Deck.DeckPage extends Deck.BasePage
     @cards = $(".card-selection .deck-card")
 
     @_buildNumberCounters()
+    @_showIdentityAgendas()
     @_buildCardList()
     @_setCardImage()
-    @_showIdentityAgendas()
+
     super(options)
 
   _updateIdentityCard: (event) ->
@@ -44,11 +45,11 @@ class Deck.DeckPage extends Deck.BasePage
 
   _showIdentityAgendas: ->
     _.map @cards, (card) =>
-      # debugger
       if $(card).hasClass("agenda")
-        # debugger
         unless $(card).data("identitySlug") == $(".selected-identity select option:selected").data("identity_slug") || $(card).data("identitySlug") == "neutral"
+          $(card).children(".number").children(".count").trigger("click")
           $(card).hide()
+    @_buildCardList()
 
   _setCardImage: ->
     identityCard = $(".selected-identity select option:selected")
