@@ -3,7 +3,7 @@
     <%= f.input :faction_id, as: :hidden, input_html: { value: @faction.id } %>
     <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
 
-    <div class="identity col-md-5"%>
+    <div data-faction="<%= @deck.faction.name.downcase %>" class="identity col-md-5"%>
       <div class="panel panel-default">
         <div class="panel-heading"><%= f.input :name %></div>
         <div class="panel-body selected-identity">
@@ -24,6 +24,12 @@
           <li class="list-group-item number-of-cards">
             <span class="label label-default"></span> Cards
           </li>
+
+          <% if @deck.faction.name.downcase == "corporation" %>
+            <li class="list-group-item agenda-required">
+              <span class="label label-default agenda"></span> of <span class="label label-default min-agenda"></span> to <span class="label label-default max-agenda"></span> Agenda
+            </li>
+          <% end %>
         </ul>
       </div>
 
@@ -72,22 +78,24 @@
         <div class="<%= card_type.to_s%> panel panel-default">
 
           <div class="panel-heading"><%= card_type.to_s.titleize %> cards</div>
-          <table class="table">
-            <tr>
-              <th>Number</th>
-              <th>Name</th>
-              <th>Identity</th>
-              <th>Types</th>
-              <th>Influence</th>
-            </tr>
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Identity</th>
+                <th>Types</th>
+                <th>Influence</th>
+              </tr>
 
-            <tbody>
-              <% cards.each do |card| %>
-                <%= render partial: "deck_card", locals: {card: card, count: count} %>
-                <% count += 1 %>
-              <% end %>
-            </tbody>
-          </table>
+              <tbody>
+                <% cards.each do |card| %>
+                  <%= render partial: "deck_card", locals: {card: card, count: count} %>
+                  <% count += 1 %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       <% end %>
     </div>

@@ -13,6 +13,10 @@ class Card < ActiveRecord::Base
     image_id.present? ? "cards/#{image_id}.png" : "cards/blank.png"
   end
 
+  def agenda?
+    card_types.collect(&:name).include?("Agenda")
+  end
+
   def formatted_description
     text = description.gsub("[Click]", "<span class='icon icon-click'></span>")
     text = text.gsub("[Subroutine]", "<span class='icon icon-subroutine'></span>")

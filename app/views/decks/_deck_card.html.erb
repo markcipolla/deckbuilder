@@ -4,7 +4,7 @@
     <%= hidden_field_tag "deck[deck_cards_attributes][#{count}][card_id]", card.id  %>
   </td>
   <td class="name">
-    <span class="card-description" data-toggle="popover" title="<%= card.name %>" data-content="<img src='<%= image_url card.card_image %>'>"><%= card.name %></span>
+    <span class="card-description" data-toggle="popover" title="<%= card.name %>" data-agenda="<%= card.agenda_point %>" data-content="<img src='<%= image_url card.card_image %>'>"><%= card.name %></span>
   </td>
   <td class="identity">
     <i data-toggle="tooltip" title="<%= card.identity.name %>" class="icon icon-<%= card.identity.slug %>"></i>

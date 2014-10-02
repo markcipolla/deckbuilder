@@ -62,17 +62,22 @@ class Deck.DeckPage extends Deck.BasePage
     $(".number-of-cards .badge").empty()
     totalCount = 0
     totalInfluence = 0
+    totalAgenda = 0
     _.map @cards, (card) =>
 
       name = $(card).children(".name").children(".card-description").html()
       content = $(card).children(".name").children(".card-description").data("content")
       cardCount = $(card).children(".number").children(".active").attr("class").split(" ")[0].replace("count", "")
       cardIdentity = $(card).data("identitySlug")
+      cardAgenda = parseInt($(card).children(".name").children("span").data("agenda")) || 0
       cardInfluence = parseInt($(card).children(".influence").html()) || 0
 
       if cardCount > 0
         if cardIdentity != $(".selected-identity select option:selected").data("identity_slug")
           totalInfluence += (cardCount * cardInfluence)
+        if cardAgenda > 0
+
+          totalAgenda += (cardCount * cardAgenda)
 
         totalCount += parseInt(cardCount)
         cardListTable.append(@cardList(
@@ -81,12 +86,75 @@ class Deck.DeckPage extends Deck.BasePage
           content: content
         ))
 
-    if totalInfluence > @maximumInfluence
+    if totalInfluence > $(".selected-identity select option:selected").data("max_influence")
       $(".maximum-influence span.remaining").removeClass("label-default").addClass("label-danger")
     else
       $(".maximum-influence span.remaining").removeClass("label-danger").addClass("label-default")
+
+    if $(".identity").data("faction") == "corporation"
+      if totalAgenda < @_minAgendaRequired(totalCount) || totalAgenda > @_maxAgendaRequired(totalCount)
+        $(".agenda-required span.agenda").removeClass("label-default").addClass("label-danger")
+      else
+        $(".agenda-required span.agenda").removeClass("label-danger").addClass("label-default")
+
+      $(".agenda-required span.agenda").html(totalAgenda)
+      $(".agenda-required span.min-agenda").html(@_minAgendaRequired(totalCount))
+      $(".agenda-required span.max-agenda").html(@_maxAgendaRequired(totalCount))
+
     $(".maximum-influence span.remaining").html(totalInfluence)
     $(".number-of-cards span").html(totalCount)
+
+  _minAgendaRequired: (count) ->
+    if count < 44
+      18
+    else if count < 50
+      20
+    else if count < 55
+      22
+    else if count < 60
+      24
+    else if count < 65
+      26
+    else if count < 70
+      28
+    else if count < 75
+      30
+    else if count < 80
+      32
+    else if count < 85
+      34
+    else if count < 90
+      36
+    else if count < 95
+      38
+    else if count < 100
+      40
+
+  _maxAgendaRequired: (count) ->
+    if count < 44
+      19
+    else if count < 50
+      21
+    else if count < 55
+      23
+    else if count < 60
+      25
+    else if count < 65
+      27
+    else if count < 70
+      29
+    else if count < 75
+      31
+    else if count < 80
+      33
+    else if count < 85
+      35
+    else if count < 90
+      37
+    else if count < 95
+      39
+    else if count < 100
+      41
 
   _buildNumberCounters: ->
     _.map @cards, (card) =>
