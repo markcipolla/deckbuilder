@@ -16,13 +16,18 @@ class Deck.DeckPage extends Deck.BasePage
   cardList: _.template """
     <tr>
       <td><%= number %></td>
-      <td><%= name %></td>
+      <td class="name">
+        <span class="card-description" data-toggle="popover" data-content="<%= content %>" title="<%= name %>">
+          <%= name %>
+        </span>
+      </td>
     </tr>
   """
 
   initialize: (options) ->
     $(".identity i").tooltip()
     $(".card-types i").tooltip()
+    $('body').popover({selector: '.card-description', html: true, trigger: "hover"})
     @cards = $(".card-selection .deck-card")
 
     @_buildNumberCounters()
@@ -32,12 +37,23 @@ class Deck.DeckPage extends Deck.BasePage
   _buildCardList: ->
     cardListTable = $(".card-list tbody")
     cardListTable.empty()
+
+    $(".number-of-cards .badge").empty()
+    totalCount = 0
     _.map @cards, (card) =>
-      number = $(card).children(".number")
-      cardCount = number.children(".active").attr("class").split(" ")[0].replace("count", "")
+
+      name = $(card).children(".name").children(".card-description").html()
+      content = $(card).children(".name").children(".card-description").data("content")
+      cardCount = $(card).children(".number").children(".active").attr("class").split(" ")[0].replace("count", "")
 
       if cardCount > 0
-        cardListTable.append(@cardList(number: cardCount, name: $(card).children(".name").html()))
+        totalCount += parseInt(cardCount)
+        cardListTable.append(@cardList(
+          number: cardCount,
+          name: name,
+          content: content
+        ))
+    $(".number-of-cards .badge").html(totalCount)
 
   _buildNumberCounters: ->
     _.map @cards, (card) =>

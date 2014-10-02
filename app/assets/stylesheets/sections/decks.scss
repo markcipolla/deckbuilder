@@ -11,6 +11,8 @@
   .card-selection {
     .panel {
       .number {
+        min-width: 130px;
+
         a {
           display: block;
           float: left;
@@ -28,6 +30,19 @@
             color: #fff;
           }
         }
+      }
+    }
+  }
+
+  .name {
+    .popover {
+      img {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .description {
+
       }
     }
   }
