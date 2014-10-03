@@ -3,7 +3,8 @@ ActiveAdmin.register User do
 
   index do
     column :id
-    column :user_name
+    column :username
+    column :current_sign_in_at
     column :email
   end
 
