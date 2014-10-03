@@ -18,7 +18,7 @@
           <tr>
             <td class="image"><%= image_tag Card.find(deck.identity_card_id).card_image %></td>
             <td><%= link_to deck.name, deck_path(deck) %></td>
-            <td><%= Card.find(deck.identity_card_id).name %></td>
+            <td><%= link_to Card.find(deck.identity_card_id).name, deck_path(deck) %></td>
           </tr>
         <% end %>
       </tbody>
