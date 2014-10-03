@@ -3,7 +3,6 @@
 
 class Deck.DeckPage extends Deck.BasePage
   events:
-    "submit form": "_submitForm"
     "click .card-selection .deck-card .number a": "_changeDeckCardCount"
     "click .card-toggles button": "_toggleCardType"
     "change .selected-identity select": "_updateIdentityCard"
@@ -61,6 +60,7 @@ class Deck.DeckPage extends Deck.BasePage
     @_showIdentityAgendas()
 
   _toggleCardType: (event) ->
+    event.preventDefault()
     $(event.currentTarget).toggleClass("active")
     cardType = $(event.currentTarget).attr("class").split(" ")[0]
     _.map @cards, (card) =>
@@ -85,6 +85,8 @@ class Deck.DeckPage extends Deck.BasePage
       cardInfluence = parseInt($(card).children(".influence").html()) || 0
 
       if cardCount > 0
+        $(card).children(".number").children(".number-field").val(cardCount)
+
         if cardIdentity != $(".selected-identity select option:selected").data("identity_slug")
           totalInfluence += (cardCount * cardInfluence)
         if cardAgenda > 0
@@ -180,11 +182,3 @@ class Deck.DeckPage extends Deck.BasePage
     $(event.currentTarget).parent().children("a").removeClass("active")
     $(event.currentTarget).addClass("active")
     @_buildCardList()
-
-  _submitForm: (event) ->
-    event.preventDefault()
-    _.map @cards, (card) =>
-      number = $(card).children(".number")
-      cardCount = number.children(".active").attr("class").split(" ")[0].replace("count")
-      number.children("input").val(cardCount)
-    $(event.currentTarget).trigger('submit')
