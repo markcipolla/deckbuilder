@@ -1,5 +1,5 @@
 ActiveAdmin.register Deck do
-  permit_params :name, :notes
+  permit_params :name, :notes, :identity_card_id
 
 
   # See permitted parameters documentation:
