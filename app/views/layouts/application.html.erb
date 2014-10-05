@@ -7,16 +7,17 @@
   <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, initial-scale=1"/></head>
 <body class="<%= "#{controller_name} #{action_name}" %>">
-<%= render partial: "elements/navbar" %>
-<%= bootstrap_flash %>
+  <%= render partial: "analytics" %>
+  <%= render partial: "elements/navbar" %>
+  <%= bootstrap_flash %>
 
-<div class="container">
-  <%= yield %>
-</div>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 
-<%= javascript_tag do %>
-  <%= raw(content_for(:js_page).presence || "Deck.page=new Deck.BasePage();") %>
-<% end %>
+  <%= javascript_tag do %>
+    <%= raw(content_for(:js_page).presence || "Deck.page=new Deck.BasePage();") %>
+  <% end %>
 </body>
 </html>
