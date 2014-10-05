@@ -14,6 +14,7 @@ class DecksController < ApplicationController
 
   def edit
     @deck = Deck.find(params[:id])
+    redirect_to root_path if @deck.user != current_user
     @faction = @deck.faction
     gather_form_requirements
     @deck.deck_cards.build
@@ -31,6 +32,7 @@ class DecksController < ApplicationController
 
   def update
     @deck = Deck.find(params[:id])
+    redirect_to root_path if @deck.user != current_user
     @deck.deck_cards.destroy_all
     if @deck.update_attributes!(deck_params)
       @deck.deck_cards.where(number: nil).destroy_all

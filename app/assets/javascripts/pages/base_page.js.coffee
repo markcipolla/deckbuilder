@@ -3,8 +3,8 @@
 
 #= require backbone-rails
 #= require turbolinks
-#= require underscore
 #= require bootstrap-sprockets
+#= require underscore
 
 
 
