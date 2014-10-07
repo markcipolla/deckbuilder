@@ -1,6 +1,5 @@
 <%= cache ['decks#show', @data_pack, 'v1'], :expires_in => 1.hour do %>
   <% content_for :title, @data_pack.name %>
-  <% content_for :js_page, "Data Packs" %>
   <div class="pack row">
     <div class="col-xs-3">
       <%= image_tag @data_pack.box_image %>
