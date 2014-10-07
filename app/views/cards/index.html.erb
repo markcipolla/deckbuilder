@@ -1,4 +1,5 @@
 <%= cache ['cards#index', 'v1'], :expires_in => 1.hour do %>
+  <% content_for :title, "Cards" %>
   <div class="row">
     <% @cards.each do |card| %>
       <div class="card col-xs-4 col-md-3">

@@ -1,4 +1,5 @@
 <%= cache ['card_types#show', @type, 'v1'], :expires_in => 1.hour do %>
+  <% content_for :title, @type.name %>
   <h1><%= @type.name %></h1>
 
   <div class="row">

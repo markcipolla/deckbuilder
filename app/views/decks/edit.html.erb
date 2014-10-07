@@ -1,4 +1,4 @@
-<% content_for :js_page, "Editing #{@deck.name}"
+<% content_for :title, "Editing #{@deck.name}" %>
 <%= render partial: "form" %>
 
 <% content_for :js_page, raw("Deck.page = new Deck.DeckPage();") %>

@@ -1,4 +1,5 @@
 <%= cache ['decks#index', 'v1'], :expires_in => 1.hour do %>
+  <% content_for :title, "Data Packs" %>
   <% @data_packs.each do |data_pack| %>
     <div class="pack row">
       <div class="col-xs-2">

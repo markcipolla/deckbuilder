@@ -1,71 +1,74 @@
-<div class="card row">
-  <div class="col-xs-3">
-    <%= image_tag @card.card_image %>
+<%= cache ['cards#show', @card, 'v1'], :expires_in => 1.hour do %>
+  <% content_for :title, @card.name %>
+  <div class="card row">
+    <div class="col-xs-3">
+      <%= image_tag @card.card_image %>
+    </div>
+
+    <div class="col-xs-9 ">
+      <h2>
+        <%= @card.name %>
+      </h2>
+
+      <h3>
+        <% @card.card_types.each do |type| %>
+          <%= link_to type.name, card_type_path(type) %>
+        <% end %>
+      </h3>
+
+      <dl>
+        <% if @card.cost %>
+          <dt>Cost</dt>
+          <dd><%= @card.cost %></dd>
+        <% end %>
+
+        <% if @card.max_influence %>
+          <dt>Max Influence</dt>
+          <dd><%= @card.max_influence %></dd>
+        <% end %>
+
+        <% if @card.deck_minimum_cards %>
+          <dt>Deck Minimum Cards</dt>
+          <dd><%= @card.deck_minimum_cards %></dd>
+        <% end %>
+
+        <% if @card.influence %>
+          <dt>Influence</dt>
+          <dd><%= @card.influence %></dd>
+        <% end %>
+
+        <% if @card.strength %>
+          <dt>Strength</dt>
+          <dd><%= @card.strength %></dd>
+        <% end %>
+
+        <% if @card.memory_units %>
+          <dt>Memory Unit(s)</dt>
+          <dd><%= @card.memory_units %></dd>
+        <% end %>
+
+        <% if @card.advancement_cost %>
+          <dt>Advancement Cost</dt>
+          <dd><%= @card.advancement_cost %></dd>
+        <% end %>
+
+        <% if @card.agenda_point %>
+          <dt>Agenda Points</dt>
+          <dd><%= @card.agenda_point %></dd>
+        <% end %>
+
+        <% if @card.trash_cost %>
+          <dt>Trash Cost</dt>
+          <dd><%= @card.trash_cost %></dd>
+        <% end %>
+
+        <% if @card.link %>
+          <dt>Link</dt>
+          <dd><%= @card.link %></dd>
+        <% end %>
+      </dl>
+
+      <p><%= @card.formatted_description %></p>
+    </div>
   </div>
-
-  <div class="col-xs-9 ">
-    <h2>
-      <%= @card.name %>
-    </h2>
-
-    <h3>
-      <% @card.card_types.each do |type| %>
-        <%= link_to type.name, card_type_path(type) %>
-      <% end %>
-    </h3>
-
-    <dl>
-      <% if @card.cost %>
-        <dt>Cost</dt>
-        <dd><%= @card.cost %></dd>
-      <% end %>
-
-      <% if @card.max_influence %>
-        <dt>Max Influence</dt>
-        <dd><%= @card.max_influence %></dd>
-      <% end %>
-
-      <% if @card.deck_minimum_cards %>
-        <dt>Deck Minimum Cards</dt>
-        <dd><%= @card.deck_minimum_cards %></dd>
-      <% end %>
-
-      <% if @card.influence %>
-        <dt>Influence</dt>
-        <dd><%= @card.influence %></dd>
-      <% end %>
-
-      <% if @card.strength %>
-        <dt>Strength</dt>
-        <dd><%= @card.strength %></dd>
-      <% end %>
-
-      <% if @card.memory_units %>
-        <dt>Memory Unit(s)</dt>
-        <dd><%= @card.memory_units %></dd>
-      <% end %>
-
-      <% if @card.advancement_cost %>
-        <dt>Advancement Cost</dt>
-        <dd><%= @card.advancement_cost %></dd>
-      <% end %>
-
-      <% if @card.agenda_point %>
-        <dt>Agenda Points</dt>
-        <dd><%= @card.agenda_point %></dd>
-      <% end %>
-
-      <% if @card.trash_cost %>
-        <dt>Trash Cost</dt>
-        <dd><%= @card.trash_cost %></dd>
-      <% end %>
-
-      <% if @card.link %>
-        <dt>Link</dt>
-        <dd><%= @card.link %></dd>
-      <% end %>
-    </dl>
-
-    <p><%= @card.formatted_description %></p>
-  </div>
-</div>
+<% end %>
