@@ -2,8 +2,9 @@
 #= require jquery_ujs
 
 #= require backbone-rails
-#= require bootstrap-sprockets
 #= require underscore
+#= require bootstrap-sprockets
+
 
 # Page base class
 class Deck.BasePage extends Backbone.View
